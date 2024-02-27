@@ -6,7 +6,7 @@ const ProductGrid = () => {
         <div class="container">
         <div class="row">
           <div class="col">
-            <ProductCard/>
+            <ProductCard nameproduct='camera' description='123' price='14k'/>
           </div>
           <div class="col">
           <ProductCard/>
