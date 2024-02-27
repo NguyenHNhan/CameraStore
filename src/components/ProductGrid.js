@@ -1,33 +1,23 @@
 import React from 'react';
 import ProductCard from './ProductCard';
+import { Container } from 'react-bootstrap';
 
 const ProductGrid = () => {
-    return (
-        <div class="container">
-        <div class="row">
-          <div class="col">
-            <ProductCard nameproduct='camera' description='123' price='14k'/>
-          </div>
-          <div class="col">
-          <ProductCard/>
-          </div>
-          <div class="col">
-          <ProductCard/>
-          </div>
-          <div class="col">
-          <ProductCard/>
-          </div>
-          <div class="col">
-          <ProductCard/>
-          </div>
-          <div class="col">
-          <ProductCard/>
-          </div>    
-        </div>
-      </div>
-            
 
-    );
+  return (
+    <Container className='mt-5'>
+      <div className="row row-cols-1 row-cols-md-4 g-4">
+        {Array.from({ length: 10 }).map((_, idx) => (
+          <div className="col" key={idx} >
+            <ProductCard />
+          </div>
+        ))}
+
+      </div>
+      
+    </Container>
+
+  );
 };
 
 export default ProductGrid;

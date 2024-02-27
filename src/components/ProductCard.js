@@ -1,10 +1,24 @@
 import { Button, Card} from 'react-bootstrap';
+import { useState } from 'react';
 
 const ProductCard = (props) => {
   const {nameproduct, description, price } = props;
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+     setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+     setIsHover(false);
+  };
+  const boxClassName = `card h-100 ${isHover ? 'shadow bg-body rounded' : ''}`;
+  const boxStyle = {
+   color: isHover ? 'red' : 'green',
+   
+};
     return (
-        <Card style={{ width: '18rem' }} className='mt-3'>
-        <Card.Img variant="top" src="https://kyma.vn/StoreData/images/Product/may-anh-sony-alpha-ilce6700-a6700-body.webp" />
+        <Card  className={boxClassName} style={boxStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <Card.Img variant="top" src="https://kyma.vn/StoreData/images/Product/may-anh-sony-alpha-ilce6700-a6700-body.webp" className='px-3' />
         <Card.Body className='text-center'>
           <Card.Title >{nameproduct}</Card.Title>
           <Card.Text>

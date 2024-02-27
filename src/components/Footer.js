@@ -1,4 +1,4 @@
-const Footer = () => <footer className="page-footer font-small blue pt-4">
+const Footer = () => <footer className="page-footer font-small blue pt-4 mt-3 bg-dark">
     <div className="container-fluid text-center text-md-left">
         <div className="row">
             <div className="col-md-6 mt-md-0 mt-3">

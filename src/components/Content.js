@@ -1,12 +1,12 @@
 import { Container } from "react-bootstrap";
-import Slider from "./Silder";
-import Multi_item_carousel from "./Multi-item-carousel";
+import Silder from "./Silder";
+import Slick from "./Slick";
 
 const Content = () => {
     return (
         <Container>
-        <Slider />
-        <Multi_item_carousel/>
+        <Silder />
+        <Slick/>
 
         </Container>
     );
