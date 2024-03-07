@@ -11,8 +11,8 @@ const Footer = () => <footer className="page-footer font-small blue pt-4 mt-3 bg
             <div className="col-md-3 mb-md-0 mb-3">
                 <h5 className="text-uppercase">Links</h5>
                 <ul className="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
+                    <li><a href="#!">Camera</a></li>
+                    <li><a href="#!">Lens</a></li>
                     <li><a href="#!">Link 3</a></li>
                     <li><a href="#!">Link 4</a></li>
                 </ul>

@@ -27,7 +27,7 @@ const Slick = () => {
 
 
         <Slider {...settings}  className="mx-4 bg-dark px-2 my-2">
-            <ProductClassify nameclassify={'123'}/>
+            <ProductClassify nameclassify={'Mrio'}/>
             <ProductClassify/>
          <ProductClassify/>
             <ProductClassify/>
