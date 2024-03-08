@@ -5,32 +5,42 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-    const [cartItem, setCartItem] = useState([]);
-
+    const [items, setItems] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+  
     useEffect(() => {
-        const CartData = sessionStorage.getItem('cart');
-        if (CartData) {
-            setCartItem(JSON.parse(CartData));
-        }
+      const savedItems = JSON.parse(localStorage.getItem('shoppingCart'));
+      if (savedItems) {
+        setItems(savedItems);
+        const totalPrice = savedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        setTotalPrice(totalPrice);
+      console.log(totalPrice);
+
+      }
     }, []);
-
+  
     useEffect(() => {
-        sessionStorage.setItem('cart', JSON.stringify(cartItem));
-    }, [cartItem]);
-
-    const addToCart = (product) => {
-        const existingItem = cartItem.find(item => item.id === product.id);
-        if (existingItem) {
-            setCartItem(cartItem.map(item =>
-                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-            ));
-        } else {
-            setCartItem([...cartItem, { ...product, quantity: 1 }])
-        }
+      localStorage.setItem('shoppingCart', JSON.stringify(items));
+      const totalPrice = items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      setTotalPrice(totalPrice);
+      console.log(totalPrice);
+    }, [items]);
+  
+    const addItemToCart = (item) => {
+      const existingItem = items.find((i) => i.id === item.id);
+      if (existingItem) {
+        setItems(
+          items.map((i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          )
+        );
+      } else {
+        setItems([...items, { ...item, quantity: 1 }]);
+      }
     };
 
     return (
-        <CartContext.Provider value={{ cartItem, addToCart }}>
+        <CartContext.Provider value={{ items, totalPrice, addItemToCart }}>
             {children}
         </CartContext.Provider>
     );

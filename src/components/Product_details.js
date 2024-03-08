@@ -15,9 +15,9 @@ const Product_details = () => {
     };
 
     const targetProduct = demoproducts.find(product => product.id == productId);
-    const { addToCart } = useCart();
+    const { addItemToCart } = useCart();
     const handleAddToCartClick = () => {
-        addToCart(targetProduct);
+        addItemToCart(targetProduct);
     };
     return (
 
