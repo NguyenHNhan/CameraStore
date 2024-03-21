@@ -1,20 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import demoproducts from "./data";
 
 import { useParams } from 'react-router-dom';
-import Popup_cart from "./Popup_Cart";
 
 import { useCart } from "./Context/CartContext";
+import { getProductById } from "../services/productservice";
 const Product_details = () => {
     const [isHover, setIsHover] = useState();
     const { productId } = useParams();
     const handleMouseEnter = (id) => {
         setIsHover(id);
     };
+    const [items, setItems] = useState([]);
 
-    const targetProduct = demoproducts.find(product => product.id == productId);
+    useEffect(()=>{
+        getProducts()
+    },[])
+
+    const getProducts = async () => {
+        let res = await getProductById();
+        if (res) {
+            setItems(res)
+            console.log(res)
+        }
+    }
+    const targetProduct = items.find(product => product.id == productId);
     const { addItemToCart } = useCart();
     const handleAddToCartClick = () => {
         addItemToCart(targetProduct);

@@ -2,6 +2,8 @@ import './App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
+import Test from './components/test';
+
 import { Route, Routes } from 'react-router-dom';
 import Product_details from './components/Product_details';
 
@@ -16,7 +18,8 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Content />} />
-        <Route path='/Product_details/:productId' element={<Product_details />} />
+        <Route path='/product_details/:productId' element={<Product_details />} />
+        <Route path='/products' element={<Test />} />
       </Routes>
       <Footer />
       </CartProvider>

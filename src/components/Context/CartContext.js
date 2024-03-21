@@ -14,8 +14,6 @@ export const CartProvider = ({ children }) => {
         setItems(savedItems);
         const totalPrice = savedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
         setTotalPrice(totalPrice);
-      console.log(totalPrice);
-
       }
     }, []);
   
@@ -23,7 +21,6 @@ export const CartProvider = ({ children }) => {
       localStorage.setItem('shoppingCart', JSON.stringify(items));
       const totalPrice = items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
       setTotalPrice(totalPrice);
-      console.log(totalPrice);
     }, [items]);
   
     const addItemToCart = (item) => {
