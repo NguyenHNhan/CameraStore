@@ -5,9 +5,6 @@ import { motion } from "framer-motion";
 import Nav from 'react-bootstrap/Nav';
 import Popup_cart from './Popup_Cart';
 const Header = () => {
-  const style = {
-    zIndex: 1000,
-  }
   const [isHover, setIsHover] = useState(false)
   const showmenu = () => {
     setIsHover(!isHover)

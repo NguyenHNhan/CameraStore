@@ -1,7 +1,9 @@
 import axios from './customize-axios';
 
 const getTopCombo = () => {
-    return axios.get("/products/topcombo")
+    // return axios.get("/products/topcombo")
+    return axios.get("/products/")
+
 }
 
 const getAllProduct = () => {

@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import ProductGrid from "./ProductGrid"
-import Slider from "./Silder";
+
 import { getAllProduct } from "../services/productservice";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,6 @@ const Test = () => {
     return (
         <>
             <Container>
-            <Slider/>
                 <div className="row bg-body px-5 pt-5 ">
                     <div className="px-5">
                         <input className="form-control rounded-pill" placeholder="Tìm kiếm" />

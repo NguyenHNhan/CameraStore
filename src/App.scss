@@ -1,12 +1,123 @@
 .backdrop_menu {
     backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.5);         
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: 1000;
 }
-.title_products {   
-        color: #065879;
-        text-decoration: none;
+
+.header_content {
+    img {
+        height: 100%;
+    }
+
+    span {
+        font-weight: bold;
+        font-size: 100px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
 }
-.price_products{
-    color: rgb(0, 0, 0);
+
+.body_content {
+    max-height: 100vh;
+    display: flex;
+    background-image: radial-gradient(circle, #48b4b8, #037e69);
+
+    div span {
+        margin-bottom: 0.5rem;
+        margin-left: 10rem;
+        color: rgb(236, 236, 236);
+        font-weight: bold;
+        font-size: 50px;
+    }
+}
+
+.body_content_left {
+    min-width: 40vw;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+.body_content_right {
+    min-width: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: #06090a;
+    padding: 0 2rem;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, .2);
+    border-radius: 50px;
+    height: 450px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 3rem 2rem 3rem;
+    div{
+        display: flex;
+        align-items: center;
+        button{
+            background: rgba(255, 255, 255, 0);
+            border-radius: 50px;
+            border: 2px solid #000000; 
+            border-color: #ffffff;
+            padding: 0.5rem 4rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            transition: color 0.3s ease;
+            color: #fcfcfc; 
+        }
+        button:hover {
+            background-color: #ffffff;
+            color: #070707c7;
+        }
+    }
+}
+
+.icon {
+    background-color: #ffffff;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    padding: 0.5rem;
+    background: rgb(255, 255, 255, 0.5);
+
+}
+
+.img_products {
+    max-width: 100%;
+    height: auto;
+}
+
+.option {
+    filter: blur(0.5rem);
+    background-color: #ffffff;
+    align-items: center;
+    display: flex;
+    height: 250px;
+    width: 250px;
+}
+.product_gird {
+    display: gird;
+    grid-template-columns: auto auto auto;
+
+    div {
+        border: 1px;
+        border-style: solid;
+        border-radius: 2%;
+        margin: 0 2px 0 2px;
+        padding: 1rem 3rem;
+    }
+
+    img {
+        width: 300px;
+    }
+
+    a {
+        color: #06090a;
+        text-decoration: none;
+    }
 }

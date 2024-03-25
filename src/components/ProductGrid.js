@@ -24,7 +24,7 @@ const ProductGrid = (props) => {
 
       </div>
       <div className='my-3 text-center'>
-        <Button className='bg-dark px-5 py-2'><span className='fw-bold'>More Product</span></Button>
+    
 
       </div>
     </Container>
