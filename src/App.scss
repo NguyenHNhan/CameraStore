@@ -38,13 +38,15 @@
 
 .body_content_right {
     min-width: 60vw;
+    // overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    // background-color: #06090a;
-    padding: 0 2rem;
+    overflow-x: auto;
 }
-
+.image-container {
+    display: flex; /* Hiển thị các phần tử con theo chiều ngang */
+    flex-wrap: nowrap; /* Ngăn các phần tử con xuống dòng */
+}
 .glass {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 45px rgba(0, 0, 0, .2);
@@ -55,7 +57,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem; 
+    margin: 0 1rem;
     div{
         display: flex;
         align-items: center;
@@ -93,12 +96,9 @@
 }
 
 .option {
-    filter: blur(0.5rem);
-    background-color: #ffffff;
-    align-items: center;
-    display: flex;
-    height: 250px;
-    width: 250px;
+    filter: blur(0.2rem);
+    height: 400px;
+    width: 350px;
 }
 .product_gird {
     display: gird;
