@@ -4,12 +4,12 @@ import { getTopCombo } from "../services/productservice";
 import { Link } from "react-router-dom";
 import { Button, Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft, faCableCar, faCartPlus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 const Content = () => {
     const [listTopCombo, setlistTopCombo] = useState([]);
-    useEffect(() => {
-        getDataTopCombo();
-    }, []);
+    // useEffect(() => {
+    //     getDataTopCombo();
+    // }, []);
     const getDataTopCombo = async () => {
         try {
             const res = await getTopCombo();
@@ -29,19 +29,22 @@ const Content = () => {
         "https://benhvienmayanh.com/files/images/banner/sua-may-anh-nikon-banner.png",
         "https://th.bing.com/th/id/R.37d65d5bf7ca721693ef9a49a65a9c94?rik=8bSX1%2fy12ZjdoA&riu=http%3a%2f%2f3.bp.blogspot.com%2f-zacSncl3zE4%2fT7nLUSEq8hI%2fAAAAAAAADuY%2fVyJEf8u0Adg%2fs1600%2fNikon%2bD90.jpg&ehk=C5vEipE4BLNix%2blwyo6anqIYiJRrWHbY4nNPssyEF2A%3d&risl=&pid=ImgRaw&r=0"
     ];
+
     const [idx, setIdx] = useState(0);
-    const [transition, setTransition] = useState(0)
+    const [transition, setTransition] = useState(80)
+    const [image, setImage] = useState( [...images, ...images])
+    const [position, setPosition] = useState(image.length/2)
     const handleNextClick = () => {
-        setTransition(1)
-        setTimeout(() => {
-            setIdx(prevIdx => (prevIdx + 1) % images.length);
-        }, 900);
+        setPosition(idx => (idx + 1))
+        setIdx(prevIdx => (prevIdx + 1) % images.length);
+        const newImages = [...image];
+        const firstImage = newImages[position];
+        newImages.push(firstImage);
+        setTransition(idx => (idx + 24));
+        setImage(newImages);
     }
     const handlePrevClick = () => {
-        setTimeout(() => {
-            setIdx(prevIdx => (prevIdx === 0 ? images.length - 1 : prevIdx - 1));
-            setTransition(0)
-        }, 900);
+        setIdx(prevIdx => (prevIdx === 0 ? images.length - 1 : prevIdx - 1));
     }
     return (
         <>
@@ -83,35 +86,67 @@ const Content = () => {
                     <span className="fs-2" >200.000.000đ</span>
                 </div>
                 <div className="body_content_right">
-                <motion.div className="option"
-                animate={{x: transition ? "50%" : 0 }}
-                transition={{ duration: 0.89 }}
-                >
+                    <div className="glass option">
                         <img className="img_products " src={idx === 0 ? images[images.length - 1] : images[idx - 1]}></img>
-                    </motion.div>
+                        <div >
+                            <button >Buy Now</button> <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                        </div>
+                    </div>
                     <FontAwesomeIcon onClick={handlePrevClick} className="icon" icon={faChevronLeft} />
                     <div className="glass">
                         <motion.img className="img_products" src={images[idx]}
-                        whileHover={{ scale: 1.1 }} 
-                        animate={{x: transition ? "50%" : 0 }}
-                        transition={{ duration: 0.89 }}/>
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.89 }} />
                         <div >
-                        <button >Buy Now</button> <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                            <button >Buy Now</button> <FontAwesomeIcon className="icon" icon={faCartShopping} />
                         </div>
                     </div>
                     <FontAwesomeIcon onClick={handleNextClick} className="icon" icon={faChevronRight} />
-                    <motion.div className="option"
-                     animate={{x: transition ? "50%" : 0 }}
-                     transition={{ duration: 0.89 }}
-                     >
+                    <div className="glass option">
                         <img className="img_products " src={idx === images.length - 1 ? images[0] : images[idx + 1]}></img>
+                        <div >
+                            <button >Buy Now</button> <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div className="bg-dark">123</div>
+            <div className="vh-100 body_content">
+                <div className="body_content_left" >
+                    <span > T-Shirt </span>
+                    <span className="fs-5 fw-normal"> This tee features premium, midweight cotton and our signature Max90 fit, which gives you some room through the sleeves and body for comfort and style. Now pull on this tee and rock it with your favourite Dunks.</span>
+                    <span className="fs-2" >200.000.000đ</span>
+                </div>
+
+                <div className="body_content_right">
+                    <motion.div className="image-container"
+                        animate={{ x: `${transition * - 1 }rem` }}
+                        transition={{ duration: 1 }}>
+                        {image.map((items, idx) => (
+                            <motion.div
+                                initial={{ filter: idx != position ? "blur(5px)" : "", scale: idx != position ? 0.9 : 1.1  }}
+                                className={`glass`}
+                                animate={{ filter: idx != position ? "blur(5px)" : "", scale: idx != position ? 0.9 : 1.1 }}
+                                transition={{ duration: 0.9 }}
+                            >
+                                <span>{idx}</span>
+                                <img
+                                    className="img_products"
+                                    src={items}
+                                />
+                                <div>
+                                    <button onClick={handleNextClick}>Buy Now</button>
+                                    <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                                </div>
+                            </motion.div>
+                        ))}
                     </motion.div>
 
                 </div>
             </div>
+
         </>
     );
 }
 export default Content
-
-
