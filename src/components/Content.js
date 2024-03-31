@@ -31,21 +31,20 @@ const Content = () => {
     ];
 
     const [idx, setIdx] = useState(0);
-    const [transition, setTransition] = useState(80)
-    const [image, setImage] = useState( [...images, ...images])
-    const [position, setPosition] = useState(image.length/2)
+    const [transition, setTransition] = useState(0)
     const handleNextClick = () => {
-        setPosition(idx => (idx + 1))
-        setIdx(prevIdx => (prevIdx + 1) % images.length);
-        const newImages = [...image];
-        const firstImage = newImages[position];
-        newImages.push(firstImage);
-        setTransition(idx => (idx + 24));
-        setImage(newImages);
+        setTransition(1)
+        setTimeout(() => {
+            setIdx(prevIdx => (prevIdx + 1) % images.length);
+        }, 900);
     }
     const handlePrevClick = () => {
         setIdx(prevIdx => (prevIdx === 0 ? images.length - 1 : prevIdx - 1));
     }
+    useEffect(() => {
+        setTransition(true);
+      }, [position]);
+
     return (
         <>
             <div className="vh-100 header_content">
@@ -104,43 +103,6 @@ const Content = () => {
                     <FontAwesomeIcon onClick={handleNextClick} className="icon" icon={faChevronRight} />
                     <div className="glass option">
                         <img className="img_products " src={idx === images.length - 1 ? images[0] : images[idx + 1]}></img>
-                        <div >
-                            <button >Buy Now</button> <FontAwesomeIcon className="icon" icon={faCartShopping} />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div className="bg-dark">123</div>
-            <div className="vh-100 body_content">
-                <div className="body_content_left" >
-                    <span > T-Shirt </span>
-                    <span className="fs-5 fw-normal"> This tee features premium, midweight cotton and our signature Max90 fit, which gives you some room through the sleeves and body for comfort and style. Now pull on this tee and rock it with your favourite Dunks.</span>
-                    <span className="fs-2" >200.000.000đ</span>
-                </div>
-
-                <div className="body_content_right">
-                    <motion.div className="image-container"
-                        animate={{ x: `${transition * - 1 }rem` }}
-                        transition={{ duration: 1 }}>
-                        {image.map((items, idx) => (
-                            <motion.div
-                                initial={{ filter: idx != position ? "blur(5px)" : "", scale: idx != position ? 0.9 : 1.1  }}
-                                className={`glass`}
-                                animate={{ filter: idx != position ? "blur(5px)" : "", scale: idx != position ? 0.9 : 1.1 }}
-                                transition={{ duration: 0.9 }}
-                            >
-                                <span>{idx}</span>
-                                <img
-                                    className="img_products"
-                                    src={items}
-                                />
-                                <div>
-                                    <button onClick={handleNextClick}>Buy Now</button>
-                                    <FontAwesomeIcon className="icon" icon={faCartShopping} />
-                                </div>
-                            </motion.div>
-                        ))}
                     </motion.div>
 
                 </div>
